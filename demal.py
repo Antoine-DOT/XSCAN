@@ -2,7 +2,7 @@ import os
 from cryptography.fernet import Fernet
 
 # Liste des fichiers à débloquer (excluant les fichiers de contrôle)
-files = [file for file in os.listdir() if os.path.isfile(file) and file not in ["install.py", "thekey.key", "demal.py"]]
+files = [file for file in os.listdir() if os.path.isfile(file) and file not in ["install.py", "thekey.key", "demal.py", "InstallRB.py","requirements.txt","README.md"]]
 
 # Afficher les fichiers à débloquer
 print(files)

@@ -14,7 +14,7 @@ print(files)
 with open("thekey.key", "rb") as key:
        secretkey = key.read()
 
-secretphrase = "parazitoune"
+secretphrase = "ratio"
 
 user_phrase = input("Enter the secret phrase to decrypt your files \n")
 

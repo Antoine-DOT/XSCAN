@@ -1,1 +1,11 @@
-gAAAAABmCpL_FAgqchMAfTqu03yX0QjCb2_Jh4-YhKeISccn-klLMNZloCJh0jHua7aqGknRNK7XXFXtCc6HEcXBMQw1tbcP3uTWhkyTaXhrp9Pbq9KPJj3EwsXfTBZ8jaELsEPDoUzIpxNEyphCp55pHmlfp5fcyggMRLv2NMDLQcpwpiPTAxFdYQlLsMGKjgxh9cvbegSe4Fb1kKkAZacSZZX3yX0RZLtSyn9WZ86NnLtqVXxq_p4M7Z36OKmRPK4xNvnvB61RPVtpUBRPQuydSn3lHwk4bpQaX2GzKIjhXMV83jI5Ks15Ztc1fcINhHf9vyWpJdNMBKUHSORwoUbXxmC890xc_S7OsLF2amJKwRYl_d2h2Yw=
+XSCAN is a newer banger scanner
+
+How does it works? Just launch the python file!
+
+How does it works?
+
+First, install all the requirements
+pip install -r requirements.txt
+
+Then launch it!
+python3 install.py

